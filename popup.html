@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silo</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00ff9f;
+    --green-dim: #00cc7a;
+    --green-faint: #00ff9f18;
+    --green-border: #00ff9f33;
+    --amber: #ffb800;
+    --red: #ff4444;
+    --bg: #030a05;
+    --bg2: #060f08;
+    --bg3: #0a1a0d;
+    --text: #a0ffcc;
+    --text-dim: #4a8a65;
+    --mono: 'Share Tech Mono', monospace;
+    --display: 'Orbitron', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    width: 320px;
+    min-height: 200px;
+    overflow: hidden;
+  }
+
+  /* Scanlines */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px
+    );
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .header {
+    padding: 12px 14px 10px;
+    border-bottom: 1px solid var(--green-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg2);
+  }
+
+  .logo {
+    font-family: var(--display);
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--green);
+    letter-spacing: 5px;
+    text-shadow: 0 0 12px var(--green);
+  }
+
+  .header-sub {
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    margin-top: 1px;
+  }
+
+  .gear-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px 4px;
+    transition: color 0.15s;
+  }
+  .gear-btn:hover { color: var(--green); }
+
+  .body { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+
+  /* URL preview */
+  .url-preview {
+    background: var(--bg3);
+    border: 1px solid var(--green-border);
+    padding: 7px 10px;
+    font-size: 11px;
+    color: var(--text-dim);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .url-preview .url-title {
+    color: var(--green);
+    font-size: 12px;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .field label {
+    display: block;
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-family: var(--display);
+  }
+
+  .field select, .field input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--green-border);
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 6px 8px;
+    outline: none;
+  }
+  .field select:focus, .field input:focus {
+    border-color: var(--green);
+  }
+  .field select option { background: var(--bg2); }
+
+  .save-btn {
+    width: 100%;
+    background: none;
+    border: 1px solid var(--green);
+    color: var(--green);
+    font-family: var(--display);
+    font-size: 11px;
+    letter-spacing: 3px;
+    padding: 9px;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-top: 2px;
+  }
+  .save-btn:hover {
+    background: var(--green-faint);
+    box-shadow: 0 0 12px var(--green-faint);
+  }
+  .save-btn:disabled {
+    border-color: var(--text-dim);
+    color: var(--text-dim);
+    cursor: default;
+    box-shadow: none;
+    background: none;
+  }
+
+  /* Status messages */
+  .status {
+    display: none;
+    padding: 8px 10px;
+    font-size: 11px;
+    border: 1px solid;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  .status.ok {
+    display: block;
+    color: var(--green);
+    border-color: var(--green-border);
+    background: var(--green-faint);
+  }
+  .status.error {
+    display: block;
+    color: var(--red);
+    border-color: #ff444433;
+    background: #ff444410;
+  }
+  .status.loading {
+    display: block;
+    color: var(--text-dim);
+    border-color: var(--green-border);
+  }
+
+  /* Not configured */
+  .not-configured {
+    padding: 20px 14px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  .not-configured a {
+    color: var(--green);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .not-configured a:hover { text-decoration: underline; }
+
+  .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="logo">SILO</div>
+    <div class="header-sub">LINK STORAGE</div>
+  </div>
+  <button class="gear-btn" id="settings-btn" title="Configuración">⚙</button>
+</div>
+
+<div id="main-content"></div>
+
+<script src="popup.js"></script>
+</body>
+</html>

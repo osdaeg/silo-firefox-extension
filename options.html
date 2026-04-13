@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Silo — Configuración</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00ff9f;
+    --green-faint: #00ff9f18;
+    --green-border: #00ff9f33;
+    --red: #ff4444;
+    --bg: #030a05;
+    --bg2: #060f08;
+    --bg3: #0a1a0d;
+    --text: #a0ffcc;
+    --text-dim: #4a8a65;
+    --mono: 'Share Tech Mono', monospace;
+    --display: 'Orbitron', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--bg2);
+    border: 1px solid var(--green-border);
+  }
+  .card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--green-border);
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--green);
+    text-shadow: 0 0 10px var(--green);
+  }
+  .card-body { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+  .field label {
+    display: block;
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-family: var(--display);
+  }
+  .field input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--green-border);
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 8px 10px;
+    outline: none;
+  }
+  .field input:focus { border-color: var(--green); }
+  .field .hint {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+  .actions { display: flex; gap: 8px; }
+  .btn {
+    flex: 1;
+    background: none;
+    border: 1px solid var(--green-border);
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 8px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.15s;
+  }
+  .btn:hover { color: var(--green); border-color: var(--green); background: var(--green-faint); }
+  .btn.primary { color: var(--green); border-color: var(--green); }
+  .status {
+    font-size: 11px;
+    padding: 7px 10px;
+    border: 1px solid;
+    text-align: center;
+    display: none;
+  }
+  .status.ok { display: block; color: var(--green); border-color: var(--green-border); background: var(--green-faint); }
+  .status.error { display: block; color: var(--red); border-color: #ff444433; background: #ff444410; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-header">SILO // CONFIGURACIÓN</div>
+  <div class="card-body">
+    <div class="field">
+      <label>URL del servidor</label>
+      <input type="text" id="silo-host" placeholder="http://192.168.1.10:7123">
+      <div class="hint">Sin barra al final</div>
+    </div>
+    <div class="field">
+      <label>API Token</label>
+      <input type="password" id="silo-token" placeholder="tu token">
+      <div class="hint">El mismo que SILO_API_TOKEN en el compose</div>
+    </div>
+    <div id="status" class="status"></div>
+    <div class="actions">
+      <button class="btn" id="test-btn">▶ PROBAR</button>
+      <button class="btn primary" id="save-btn">GUARDAR</button>
+    </div>
+  </div>
+</div>
+<script src="options.js"></script>
+</body>
+</html>
