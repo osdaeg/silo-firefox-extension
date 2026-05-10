@@ -1,0 +1,89 @@
+Note: Unnecessary use of -X or --request, POST is already inferred.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Host codeberg.org:443 was resolved.
+* IPv6: 2a0a:4580:103f:c0de::1
+* IPv4: 217.197.84.140
+*   Trying [2a0a:4580:103f:c0de::1]:443...
+* Immediate connect fail for 2a0a:4580:103f:c0de::1: Network is unreachable
+*   Trying 217.197.84.140:443...
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* ALPN: curl offers h2,http/1.1
+} [5 bytes data]
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+} [1567 bytes data]
+*  CAfile: /etc/ssl/certs/ca-certificates.crt
+*  CApath: /etc/ssl/certs
+{ [5 bytes data]
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+{ [1210 bytes data]
+* TLSv1.3 (IN), TLS change cipher, Change cipher spec (1):
+{ [1 bytes data]
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+{ [19 bytes data]
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+{ [2054 bytes data]
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+{ [79 bytes data]
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+} [1 bytes data]
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384 / X25519MLKEM768 / id-ecPublicKey
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=*.codeberg.org
+*  start date: Apr 15 11:09:01 2026 GMT
+*  expire date: Jul 14 11:09:00 2026 GMT
+*  subjectAltName: host "codeberg.org" matched cert's "codeberg.org"
+*  issuer: C=US; O=Let's Encrypt; CN=E8
+*  SSL certificate verify ok.
+*   Certificate level 0: Public key type EC/prime256v1 (256/128 Bits/secBits), signed using ecdsa-with-SHA384
+*   Certificate level 1: Public key type EC/secp384r1 (384/192 Bits/secBits), signed using sha256WithRSAEncryption
+*   Certificate level 2: Public key type RSA (4096/152 Bits/secBits), signed using sha256WithRSAEncryption
+* Connected to codeberg.org (217.197.84.140) port 443
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://codeberg.org/api/v1/repos/osdaeg/silo-firefox-extension/releases
+* [HTTP/2] [1] [:method: POST]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: codeberg.org]
+* [HTTP/2] [1] [:path: /api/v1/repos/osdaeg/silo-firefox-extension/releases]
+* [HTTP/2] [1] [user-agent: curl/8.14.1]
+* [HTTP/2] [1] [accept: */*]
+* [HTTP/2] [1] [authorization: token 324944dc89ea04bdb5f360ddd6875b31c8e08972]
+* [HTTP/2] [1] [content-type: application/json]
+* [HTTP/2] [1] [content-length: 113]
+} [5 bytes data]
+> POST /api/v1/repos/osdaeg/silo-firefox-extension/releases HTTP/2
+> Host: codeberg.org
+> User-Agent: curl/8.14.1
+> Accept: */*
+> Authorization: token 324944dc89ea04bdb5f360ddd6875b31c8e08972
+> Content-Type: application/json
+> Content-Length: 113
+> 
+} [113 bytes data]
+* upload completely sent off: 113 bytes
+{ [5 bytes data]
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+{ [249 bytes data]
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+{ [249 bytes data]
+< HTTP/2 404 
+< cache-control: max-age=0, private, must-revalidate, no-transform
+< content-type: application/json;charset=utf-8
+< vary: Origin
+< x-content-type-options: nosniff
+< x-frame-options: SAMEORIGIN
+< content-length: 97
+< date: Sat, 09 May 2026 18:46:17 GMT
+< x-server-name: s_forgejo_main
+< strict-transport-security: max-age=63072000; includeSubDomains; preload;
+< permissions-policy: interest-cohort=()
+< alt-svc: h3=":443";ma=2592000;
+< 
+{ [5 bytes data]
+100   210  100    97  100   113    103    120 --:--:-- --:--:-- --:--:--   224
+* Connection #0 to host codeberg.org left intact
+{"message":"The target couldn't be found.","url":"https://codeberg.org/api/swagger","errors":[]}
