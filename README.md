@@ -1,6 +1,6 @@
 # silo-firefox
 
-Extensión para Firefox de [Silo](https://codeberg.org/osdaeg/silo), el gestor de enlaces autoalojado. Permite guardar la pestaña activa en Silo con un clic, con selector de colección.
+Extensión para Firefox de [Silo](https://github.com/osdaeg/silo), el gestor de enlaces autoalojado. Permite guardar la pestaña activa en Silo con un clic, con selector de colección.
 
 ## Funcionalidades
 
@@ -60,16 +60,16 @@ El enlace se guarda en Silo y se sincroniza automáticamente con Raindrop si est
 
 ## Servidor
 
-Esta extensión requiere una instancia de [Silo](https://codeberg.org/osdaeg/silo) corriendo y accesible desde el navegador.
+Esta extensión requiere una instancia de [Silo](https://github.com/osdaeg/silo) corriendo y accesible desde el navegador.
 
 ## Parte del ecosistema Silo
 
 | Cliente | Descripción |
 |---------|-------------|
-| [silo](https://codeberg.org/osdaeg/silo) | Servidor FastAPI + dashboard web |
-| [silo-cli](https://codeberg.org/osdaeg/silo-cli) | Cliente de línea de comandos |
-| [silo-tui](https://codeberg.org/osdaeg/silo-tui) | Interfaz de terminal (Python Textual) |
-| [silo-plasmoid](https://codeberg.org/osdaeg/silo-plasmoid) | Widget para KDE Plasma 6 |
+| [silo](https://github.com/osdaeg/silo) | Servidor FastAPI + dashboard web |
+| [silo-cli](https://github.com/osdaeg/silo-cli) | Cliente de línea de comandos |
+| [silo-tui](https://github.com/osdaeg/silo-tui) | Interfaz de terminal (Python Textual) |
+| [silo-plasmoid](https://github.com/osdaeg/silo-plasmoid) | Widget para KDE Plasma 6 |
 | **silo-firefox** | **Extensión para Firefox**  ← estás aquí |
-| [silo-android](https://codeberg.org/osdaeg/silo-android) | App Android |
+| [silo-android](https://github.com/osdaeg/silo-android) | App Android |
 
